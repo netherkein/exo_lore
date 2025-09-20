@@ -1,47 +1,61 @@
-let capitulos = [];
-
-// Carregar capítulos do JSON
-fetch("capitulos.json")
-    .then(res => res.json())
-    .then(data => {
-        capitulos = data;
-        carregarIndice();
-    });
-
-function mostrarIndice() {
-    document.getElementById('inicio').classList.add('hidden');
-    document.getElementById('indice').classList.remove('hidden');
-    document.getElementById('capitulo').classList.add('hidden');
+body {
+    margin: 0;
+    background: url("imgs/capa.jpg") no-repeat center center;
+    min-height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-attachment: fixed; /* Ensures background stays fixed on scroll */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
 }
 
-function carregarIndice() {
-    const lista = document.getElementById("listaCapitulos");
-    lista.innerHTML = "";
-    capitulos.forEach((cap, i) => {
-        const link = document.createElement("a");
-        link.href = "#";
-        link.textContent = cap.titulo;
-        link.onclick = () => mostrarCapitulo(i);
-        lista.appendChild(link);
-        lista.appendChild(document.createElement("br"));
-    });
+.container {
+    max-width: 900px;
+    width: 95%;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 12px;
+    color: white;
+    height: 90vh;
+    overflow-y: auto; /* Agora o texto longo rola */
 }
 
-function mostrarCapitulo(index) {
-    const cap = capitulos[index];
-    document.getElementById('indice').classList.add('hidden');
-    document.getElementById('capitulo').classList.remove('hidden');
-    document.getElementById('tituloCapitulo').textContent = cap.titulo;
-    document.getElementById('conteudoCapitulo').innerHTML = cap.texto;
+button, a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    transition: 0.3s;
 }
 
-function voltarIndice() {
-    document.getElementById('capitulo').classList.add('hidden');
-    document.getElementById('indice').classList.remove('hidden');
+button:hover, a:hover {
+    color: magenta;
+    background-color: #00FFFF;
 }
 
-function voltarInicio() {
-    document.getElementById('indice').classList.add('hidden');
-    document.getElementById('capitulo').classList.add('hidden');
-    document.getElementById('inicio').classList.remove('hidden');
+.hidden {
+    display: none;
+}
+
+.chapter {
+    text-align: left;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Remover fundo escuro só no inicio */
+#inicio.container {
+    background-color: transparent;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* sombra no texto para dar contraste */
 }
