@@ -1,4 +1,4 @@
-const CACHE_NAME = "livro-cache-v16";
+const CACHE_NAME = "livro-cache-v15";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
@@ -6,6 +6,8 @@ const FILES_TO_CACHE = [
   "/script.js",
   "/capitulos.json",
   "/manifest.json",
+  "/sounds/botao1.mp3",
+  "/sounds/botao2.mp3",
   "/imgs/capa.jpg",
   "/imgs/icon.png",
   "/imgs/icon-512.png",
@@ -23,7 +25,7 @@ self.addEventListener("install", event => {
       });
     })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Força a ativação imediata do novo Service Worker
 });
 
 // Ativa e limpa caches antigos
@@ -34,7 +36,7 @@ self.addEventListener("activate", event => {
       return Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)));
     }).catch(err => console.error("Erro ao limpar caches antigos:", err))
   );
-  self.clients.claim();
+  self.clients.claim(); // Assume controle imediato das páginas abertas
 });
 
 // Intercepta requests e serve do cache
@@ -47,6 +49,7 @@ self.addEventListener("fetch", event => {
       }
       console.log("Buscando da rede:", event.request.url);
       return fetch(event.request).then(response => {
+        // Cacheia a resposta para requisições futuras
         if (response && response.status === 200 && event.request.method === "GET") {
           return caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request, response.clone());
