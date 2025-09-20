@@ -1,40 +1,15 @@
-/* Fundo da tela inicial */
-#inicio {
-    background: url("imgs/capa.jpg") no-repeat center center;
-    background-size: cover;
-    width: 100vw; /* Alterado para 100vw para preencher toda a largura da viewport */
-    height: 100vh; /* Alterado para 100vh para preencher toda a altura da viewport */
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Remover fundo escuro só no inicio */
-#inicio.container {
-    background-color: transparent;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* sombra no texto para dar contraste */
-}
 
 body {
     margin: 0;
+    background: url("imgs/capa.jpg") no-repeat center center;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(45deg, #8B008B, #008B8B, #8B008B, #008B8B);
-    background-size: 400%;
+    background-size: 150%;
     animation: gradient 15s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
-}
-
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -77,4 +52,12 @@ button:hover, a:hover {
     margin: 20px auto;
     font-size: 1.1rem;
     line-height: 1.6;
+}
+/* Fundo da tela inicial */
+
+/* Remover fundo escuro só no inicio */
+#inicio.container {
+    background-color: transparent;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* sombra no texto para dar contraste */
 }
