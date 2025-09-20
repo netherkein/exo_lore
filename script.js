@@ -31,6 +31,7 @@ function mostrarIndice() {
   document.getElementById('inicio').classList.add('hidden');
   document.getElementById('indice').classList.remove('hidden');
   document.getElementById('capitulo').classList.add('hidden');
+  document.getElementById('voltarButton').style.display = 'block'; // Mostra o botão fixo
 }
 
 function carregarIndice() {
@@ -52,6 +53,7 @@ function mostrarCapitulo(index) {
   document.getElementById('capitulo').classList.remove('hidden');
   document.getElementById('tituloCapitulo').textContent = cap.titulo;
   document.getElementById('conteudoCapitulo').innerHTML = cap.texto;
+  document.getElementById('voltarButton').style.display = 'block'; // Mostra o botão fixo
 }
 
 function voltarIndice() {
@@ -63,4 +65,17 @@ function voltarInicio() {
   document.getElementById('indice').classList.add('hidden');
   document.getElementById('capitulo').classList.add('hidden');
   document.getElementById('inicio').classList.remove('hidden');
+  document.getElementById('voltarButton').style.display = 'none'; // Esconde o botão fixo na tela inicial
+}
+
+// Função para o botão fixo de voltar
+function voltar() {
+  const indice = document.getElementById('indice');
+  const capitulo = document.getElementById('capitulo');
+
+  if (!capitulo.classList.contains('hidden')) {
+    voltarIndice();
+  } else if (!indice.classList.contains('hidden')) {
+    voltarInicio();
+  }
 }

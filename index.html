@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXO: WebApp</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXO: A Quarta Dimensão</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div class="container" id="inicio">
-        <h1>Bem-vindo à EXO: A Quarta Dimensão</h1>
-        <button onclick="mostrarIndice()">Iniciar</button>
-    </div>
+  <!-- Botão fixo de voltar no canto superior esquerdo -->
+  <button id="voltarButton" class="fixed-voltar" onclick="voltar()" style="display: none;">Voltar</button>
 
-    <div class="container hidden" id="indice">
-        <h2>Índice de Capítulos</h2>
-        <div id="listaCapitulos"></div>
-        <div>
-            <a href="#" onclick="voltarInicio()">Voltar ao Início</a>
-        </div>
-    </div>
+  <div id="inicio" class="container">
+    <h1>Bem-vindo à EXO: A Quarta Dimensão</h1>
+    <button onclick="mostrarIndice()">Iniciar</button>
+  </div>
 
-    <div class="container hidden" id="capitulo">
-        <h2 id="tituloCapitulo"></h2>
-        <div class="chapter" id="conteudoCapitulo"></div>
-        <a href="#" onclick="voltarIndice()">Voltar ao Índice</a>
-    </div>
+  <div id="indice" class="container hidden">
+    <h1>Índice de Capítulos</h1>
+    <div id="listaCapitulos"></div>
+    <button onclick="voltarInicio()" class="voltar">Voltar ao Início</button>
+  </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Registrar o Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-              .then(() => console.log("Service Worker registrado"))
-              .catch(err => console.error("Erro ao registrar SW:", err));
-        }
-    </script>
+  <div id="capitulo" class="container hidden">
+    <h1 id="tituloCapitulo"></h1>
+    <div id="conteudoCapitulo" class="chapter"></div>
+    <button onclick="voltarIndice()" class="voltar">Voltar ao Índice</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Registra o Service Worker com depuração
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registrado com sucesso:', reg.scope))
+        .catch(err => console.error('Erro ao registrar SW:', err.message, err.stack));
+    } else {
+      console.log('Service Worker não é suportado neste navegador');
+    }
+  </script>
 </body>
 </html>
-

@@ -1,11 +1,16 @@
-const CACHE_NAME = "livro-cache-v1";
+const CACHE_NAME = "livro-cache-v10";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
   "/capitulos.json",
-  "/manifest.json"
+  "/manifest.json",
+  "/sounds/botao1.mp3",
+  "/sounds/botao2.mp3",
+  "/imgs/capa.jpg",
+  "/imgs/icon.png",
+  "/imgs/icon-512.png"
 ];
 
 // Instala o service worker e faz cache inicial

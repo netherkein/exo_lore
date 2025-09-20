@@ -1,21 +1,15 @@
 body {
     margin: 0;
-    background: url("imgs/capa.jpg") no-repeat center center;
-    min-height: 100vh;
-    width: 100vw;
-    background-size: cover; /* Preenche toda a tela sem distorcer, adaptando a 9:16 ou 16:9 */
+    background: url("imgs/capa.jpg") no-repeat center center fixed;
+    background-size: cover; /* Cobertura completa da tela */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: sans-serif;
-}
-
-/* Media query para dispositivos móveis em orientação paisagem, se precisar de ajustes finos */
-@media (orientation: landscape) and (max-width: 768px) {
-    body {
-        background-position: center center;
-        background-size: cover; /* Reforça o cover em paisagem móvel */
-    }
+    font-family: 'Arial', sans-serif; /* Fonte padrão, pode ser alterada para uma cyberpunk como 'Orbitron' */
+    color: #FFFFFF;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden; /* Evita barras de rolagem horizontais */
 }
 
 .container {
@@ -23,20 +17,20 @@ body {
     width: 95%;
     padding: 20px;
     text-align: center;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente para melhor legibilidade */
     border-radius: 12px;
-    color: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Sombra neon ciano */
     height: 90vh;
-    overflow-y: auto;
+    overflow-y: auto; /* Rolagem interna se o conteúdo for longo */
 }
 
 button, a {
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 12px 24px;
+    font-size: 1.1rem;
     cursor: pointer;
     background-color: #000000;
-    color: white;
-    border: none;
+    color: #00FFFF; /* Ciano neon */
+    border: 2px solid #00FFFF;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
@@ -45,8 +39,11 @@ button, a {
 }
 
 button:hover, a:hover {
-    color: magenta;
-    background-color: #00FFFF;
+    color: #FF00FF; /* Magenta neon */
+    background-color: #00FFFF; /* Ciano neon */
+    box-shadow: 0 0 10px #00FFFF;
+    animation: glitch 0.3s linear infinite; /* Efeito de glitch ao hover */
+    font-weight: 600;
 }
 
 .hidden {
@@ -58,80 +55,103 @@ button:hover, a:hover {
     margin: 20px auto;
     font-size: 1.1rem;
     line-height: 1.6;
+    color: #E0E0E0; /* Cinza claro para texto principal */
 }
 
 /* Fundo da tela inicial */
 #inicio.container {
     background-color: transparent;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-body {
-    margin: 0;
-    background: url("imgs/capa.jpg") no-repeat center center;
-    min-height: 100vh;
-    width: 100vw;
-    background-size: cover; /* Preenche toda a tela sem distorcer, adaptando a 9:16 ou 16:9 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
+/* Botão fixo de voltar no canto superior esquerdo */
+.fixed-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #000000;
+    color: #00FFFF;
+    border: 2px solid #00FFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-/* Media query para dispositivos móveis em orientação paisagem, se precisar de ajustes finos */
-@media (orientation: landscape) and (max-width: 768px) {
-    body {
-        background-position: center center;
-        background-size: cover; /* Reforça o cover em paisagem móvel */
+.fixed-voltar:hover {
+    background-color: #00FFFF;
+    color: #000000;
+    animation: glitch 0.3s linear infinite;
+}
+
+.diario-box {
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00FFFF;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.diario-box h3 {
+    color: #FF00FF;
+    font-style: italic;
+}
+
+.diario-box p {
+    font-style: italic;
+    color: #E0E0E0;
+}
+
+.diario-kal {
+    background-color: rgba(0, 255, 255, 0.2); /* Fundo mais brilhante */
+    border: 2px solid #FF00FF; /* Borda magenta para destaque */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.7), 0 0 25px rgba(0, 255, 255, 0.5); /* Sombra neon dupla */
+    animation: pulse 2s infinite; /* Animação pulsante */
+}
+
+/* Efeito de glitch para hover */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        height: 95vh; /* Ajusta para telas menores */
+    }
+
+    button, a {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .fixed-voltar {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .chapter {
+        font-size: 1rem;
+        margin: 10px auto;
     }
 }
 
-.container {
-    max-width: 900px;
-    width: 95%;
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(0,0,0,0.6);
-    border-radius: 12px;
-    color: white;
-    height: 90vh;
-    overflow-y: auto;
-}
-
-button, a {
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    margin: 10px;
-    transition: 0.3s;
-}
-
-button:hover, a:hover {
-    color: magenta;
-    background-color: #00FFFF;
-}
-
-.hidden {
-    display: none;
-}
-
-.chapter {
-    text-align: left;
-    margin: 20px auto;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-/* Fundo da tela inicial */
-#inicio.container {
-    background-color: transparent;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+@media (orientation: landscape) and (max-width: 768px) {
+    body {
+        background-position: center center;
+        background-size: cover;
+    }
 }
