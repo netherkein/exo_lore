@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Capítulos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+    <div class="container" id="inicio">
+        <h1>Bem-vindo à Página de Consulta</h1>
+        <button onclick="mostrarIndice()">Iniciar</button>
+    </div>
+
+    <div class="container hidden" id="indice">
+        <h2>Índice de Capítulos</h2>
+        <div id="listaCapitulos"></div>
+        <div>
+            <a href="#" onclick="voltarInicio()">Voltar ao Início</a>
+        </div>
+    </div>
+
+    <div class="container hidden" id="capitulo">
+        <h2 id="tituloCapitulo"></h2>
+        <div class="chapter" id="conteudoCapitulo"></div>
+        <a href="#" onclick="voltarIndice()">Voltar ao Índice</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Registrar o Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+              .then(() => console.log("Service Worker registrado"))
+              .catch(err => console.error("Erro ao registrar SW:", err));
+        }
+    </script>
+</body>
+</html>
