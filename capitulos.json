@@ -1,0 +1,14 @@
+[
+    {
+        "titulo": "Capítulo 1",
+        "texto": "<p>Este é o conteúdo do primeiro capítulo. Agora você pode escrever textos longos e eles vão rolar normalmente.</p>"
+    },
+    {
+        "titulo": "Capítulo 2",
+        "texto": "<p>Outro capítulo de exemplo. Você pode usar HTML dentro do texto, como <b>negrito</b>, <i>itálico</i> ou até imagens.</p>"
+    },
+    {
+        "titulo": "Capítulo 3",
+        "texto": "<p>Coloque aqui o conteúdo que quiser. O sistema carrega do arquivo JSON.</p>"
+    }
+]
