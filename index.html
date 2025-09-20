@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#00FFFF">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="EXO">
-  <link rel="apple-touch-icon" href="imgs/icon-512.png">
+  <link rel="apple-touch-icon" href="/imgs/icon-512.png">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <title>EXO: A Quarta Dimensão</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <button id="voltarButton" class="fixed-voltar" onclick="voltar()" style="display: none;">Voltar</button>
@@ -34,18 +34,15 @@
     <button onclick="voltarIndice()" class="voltar">Voltar ao Índice</button>
   </div>
 
-  <audio id="botao1Sound" src="sounds/botao1.mp3" preload="auto"></audio>
-  <audio id="botao2Sound" src="sounds/botao2.mp3" preload="auto"></audio>
-
   <script src="script.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      console.log('Tentando registrar Service Worker em service-worker.js');
-      navigator.serviceWorker.register('service-worker.js')
+      console.log('Tentando registrar Service Worker em /service-worker.js');
+      navigator.serviceWorker.register('/service-worker.js')
         .then(reg => console.log('Service Worker registrado com sucesso:', reg.scope))
         .catch(err => {
           console.error('Erro ao registrar SW:', err.message, err.stack);
-          console.log('Verifique se service-worker.js existe na raiz do projeto');
+          console.log('Verifique se /service-worker.js existe em https://netherkein.github.io/exo_lore/service-worker.js');
         });
     } else {
       console.log('Service Worker não é suportado neste navegador');
