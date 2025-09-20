@@ -3,12 +3,19 @@ body {
     background: url("imgs/capa.jpg") no-repeat center center;
     min-height: 100vh;
     width: 100vw;
-    background-size: cover;
-    background-attachment: fixed; /* Ensures background stays fixed on scroll */
+    background-size: cover; /* Preenche toda a tela sem distorcer, adaptando a 9:16 ou 16:9 */
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
+}
+
+/* Media query para dispositivos móveis em orientação paisagem, se precisar de ajustes finos */
+@media (orientation: landscape) and (max-width: 768px) {
+    body {
+        background-position: center center;
+        background-size: cover; /* Reforça o cover em paisagem móvel */
+    }
 }
 
 .container {
@@ -20,7 +27,7 @@ body {
     border-radius: 12px;
     color: white;
     height: 90vh;
-    overflow-y: auto; /* Agora o texto longo rola */
+    overflow-y: auto;
 }
 
 button, a {
@@ -53,9 +60,9 @@ button:hover, a:hover {
     line-height: 1.6;
 }
 
-/* Remover fundo escuro só no inicio */
+/* Fundo da tela inicial */
 #inicio.container {
     background-color: transparent;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* sombra no texto para dar contraste */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
