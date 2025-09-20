@@ -5,7 +5,9 @@ const FILES_TO_CACHE = [
   "/style.css",
   "/script.js",
   "/capitulos.json",
-  "/manifest.json"
+  "/manifest.json",
+  "/sounds/botao1.mp3",
+  "/sounds/botao2.mp3"
 ];
 
 // Instala o service worker e faz cache inicial
