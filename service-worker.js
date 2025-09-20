@@ -1,4 +1,4 @@
-const CACHE_NAME = "livro-cache-v11";
+const CACHE_NAME = "livro-cache-v14";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
@@ -10,7 +10,8 @@ const FILES_TO_CACHE = [
   "/sounds/botao2.mp3",
   "/imgs/capa.jpg",
   "/imgs/icon.png",
-  "/imgs/icon-512.png"
+  "/imgs/icon-512.png",
+  "/favicon.ico"
 ];
 
 // Instala o service worker e faz cache inicial
@@ -18,8 +19,11 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log("Caching files:", FILES_TO_CACHE);
-      return cache.addAll(FILES_TO_CACHE);
-    }).catch(err => console.error("Erro ao fazer cache:", err))
+      return cache.addAll(FILES_TO_CACHE).catch(err => {
+        console.error("Erro ao fazer cache:", err);
+        throw err;
+      });
+    })
   );
 });
 
@@ -29,7 +33,7 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys => {
       console.log("Caches encontrados:", keys);
       return Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)));
-    })
+    }).catch(err => console.error("Erro ao limpar caches antigos:", err))
   );
 });
 
@@ -42,7 +46,13 @@ self.addEventListener("fetch", event => {
         return resp;
       }
       console.log("Buscando da rede:", event.request.url);
-      return fetch(event.request);
-    }).catch(err => console.error("Erro ao buscar:", err))
+      return fetch(event.request).catch(err => {
+        console.error("Erro ao buscar da rede:", err);
+        return caches.match("/index.html");
+      });
+    }).catch(err => {
+      console.error("Erro ao processar fetch:", err);
+      return new Response("Erro ao carregar recurso", { status: 500 });
+    })
   );
 });
