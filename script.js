@@ -11,6 +11,9 @@ fetch("capitulos.json")
     carregarIndice();
   })
   .catch(err => console.error('Error loading chapters:', err));
+  
+//ajuste o registro do service worker para caminho relativo:
+  navigator.serviceWorker.register("./service-worker.js");
 
 // Função para reproduzir som de clique
 function playClickSound(isVoltar) {
